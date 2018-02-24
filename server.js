@@ -1,6 +1,10 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var reserved = require("data/reserved.js");
+var waitlist = require("data/waitlist.js");
+var getHTML = require("routing/htmlRoutes.js")(app);
+var getAPI = require("routing/apiRoutes.js")(app);
 
 var app = express();
 var PORT = process.env.PORT || 3000;
