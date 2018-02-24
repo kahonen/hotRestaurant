@@ -3,11 +3,11 @@ var reserved = require("../data/reserved.js");
 var waitlist = require("../data/waitlist.js"); 
 
 module.exports = function(app) {
-    app.get("api/reservation", function(req, res) {
+    app.get("/api/reservation", function(req, res) {
         res.json(reserved);
     });
 
-    app.get("api/waitlist", function(req, res) {
+    app.get("/api/waitlist", function(req, res) {
         res.json(waitlist);
     });
 
@@ -16,7 +16,7 @@ module.exports = function(app) {
         var newRes = req.body;
         var isReserved = false;
 
-        if (reserved <= 5) {
+        if (reserved.length <= 5) {
             reserved.push(newRes);
             isReserved = true;
         }
