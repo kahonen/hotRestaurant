@@ -9,5 +9,20 @@ module.exports = function(app) {
 
     app.get("api/waitlist", function(req, res) {
         res.json(waitlist);
-    })  
+    });
+
+    app.post("/api/reservation/new", function(req, res) {
+        
+        var newRes = req.body;
+        var isReserved = false;
+
+        if (reserved <= 5) {
+            reserved.push(newRes);
+            isReserved = true;
+        }
+        else {
+            waitlist.push(newRes);
+        };
+        res.json(isReserved);
+    })
 };
