@@ -42,25 +42,25 @@
 
         <form role="form">
 
-          <div class="form-group">
-            <label for>Name</label>
-            <input type="text" class="form-control" id="reserve_name">
-          </div>
+            <div class="form-group">
+              <label for>Name</label>
+              <input type="text" class="form-control" id="name">
+            </div>
 
-          <div class="form-group">
-            <label for>Phone Number</label>
-            <input type="text" class="form-control" id="reserve_phone">
-          </div>
+            <div class="form-group">
+              <label for>Phone Number</label>
+              <input type="text" class="form-control" id="phone">
+            </div>
 
-          <div class="form-group">
-            <label for>Email</label>
-            <input type="text" class="form-control" id="reserve_email">
-          </div>
+            <div class="form-group">
+              <label for>Email</label>
+              <input type="text" class="form-control" id="email">
+            </div>
 
-          <div class="form-group">
-            <label for>Unique ID</label>
-            <input type="text" class="form-control" id="reserve_uniqueID">
-          </div>
+            <div class="form-group">
+              <label for>Unique ID</label>
+              <input type="text" class="form-control" id="uniqueID">
+            </div>
 
           <button type="submit" class="btn btn-primary submit">Submit</button>
         </form>
@@ -72,35 +72,28 @@
       <a href="/api/waitlist"> API Wait List</a>
   </div>
 
-  <script type="text/javascript">
+<script type="text/javascript">
+    $(".submit").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        name: $("#name").val().trim(),
+        phone: $("#phone").val().trim(),
+        email: $("#email").val().trim(),
+        uniqueID: $("#uniqueID").val().trim()
+      };
 
-
-
-
-    $("#search-btn").on("click", function () {
-      var newReservation = $("#character-search").val().trim();
-
-      // Using a RegEx Pattern to remove spaces from searchedCharacter
-      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-      newReservation = newReservation.replace(/\s+/g, "").toLowerCase();
-
-      $.get("/api/" + newReservation, function (data) {
+      $.post("/api/reservation/new", newReservation)
+      .then(function(data) {
         console.log(data);
-        if (data) {
-          $("#stats").show();
-          $("#name").text(data.name);
-          $("#role").text(data.role);
-          $("#age").text(data.age);
-          $("#force-points").text(data.forcePoints);
+        if(data){
+        alert("Adding reservation...");
         }
-        else {
-          $("#name").text("The force is not strong with this one. Your character was not found.");
-          $("#stats").hide();
+        else{
+        alert("Adding waitlist...")
         }
       });
     });
-  </script>
-
+</script>
 </body>
-
 </html>
+
