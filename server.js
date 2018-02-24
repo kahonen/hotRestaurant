@@ -3,8 +3,6 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var reserved = require("data/reserved.js");
 var waitlist = require("data/waitlist.js");
-var getHTML = require("routing/htmlRoutes.js")(app);
-var getAPI = require("routing/apiRoutes.js")(app);
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -12,6 +10,9 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+require("routing/apiRoutes.js")(app);
+require("routing/htmlRoutes.js")(app);
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
