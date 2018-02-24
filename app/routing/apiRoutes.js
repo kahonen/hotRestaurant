@@ -18,7 +18,7 @@ module.exports = function(app) {
         var newRes = req.body;
         var isReserved = false;
 
-        if (reserved <= 5) {
+        if (reserved.length <= 5) {
             reserved.push(newRes);
             isReserved = true;
         }
