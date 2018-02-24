@@ -4,12 +4,10 @@ var waitlist = require("../data/waitlist.js");
 
 module.exports = function(app) {
     app.get("/api/reservation", function(req, res) {
-        console.log(reserved);
         res.json(reserved);
     });
 
     app.get("/api/waitlist", function(req, res) {
-        console.log(reserved);
         res.json(waitlist);
     });
 
